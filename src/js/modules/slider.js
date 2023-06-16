@@ -15,7 +15,7 @@ export default class Slider {
       this.slideIndex = this.slides.length;
     }
 
-    try {
+    if (this.hanson) {
       this.hanson.style.opacity = '0';
 
       if (n === 3) {
@@ -27,7 +27,7 @@ export default class Slider {
       } else {
         this.hanson.classList.remove('slideInUp');
       }
-    } catch (e) {}
+    }
 
     this.slides.forEach((slide) => {
       slide.style.display = 'none';
@@ -41,22 +41,25 @@ export default class Slider {
   }
 
   render() {
-    try {
-      this.hanson = document.querySelector('.hanson');
-    } catch (e) {}
+    this.hanson = document.querySelector('.hanson');
 
-    this.btns.forEach((item) => {
-      item.addEventListener('click', () => {
-        this.plusSlides(1);
+    if (this.hanson) {
+      this.btns.forEach((item) => {
+        item.addEventListener('click', () => {
+          this.plusSlides(1);
+        });
+
+        item.parentNode.previousElementSibling.addEventListener(
+          'click',
+          (e) => {
+            e.preventDefault();
+            this.slideIndex = 1;
+            this.showSlides(this.slideIndex);
+          }
+        );
       });
 
-      item.parentNode.previousElementSibling.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.slideIndex = 1;
-        this.showSlides(this.slideIndex);
-      });
-    });
-
-    this.showSlides(this.slideIndex);
+      this.showSlides(this.slideIndex);
+    }
   }
 }
