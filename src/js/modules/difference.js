@@ -9,15 +9,12 @@ export default class Difference {
   }
 
   bindTriggers(container, items, counter) {
-    // TODO: добавить анимацию fadeIN классом
     container.querySelector('.plus').addEventListener('click', () => {
       if (counter !== items.length - 2) {
         items[counter].style.display = 'flex';
-        items[counter].classList.add('fadeIn');
         counter += 1;
       } else {
         items[counter].style.display = 'flex';
-        items[counter].classList.add('fadeIn');
         items[items.length - 1].remove();
       }
     });
