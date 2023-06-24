@@ -37,7 +37,7 @@ export default class Form {
         element.setSelectionRange(position, position);
       } else {
         if (element.createTextRange) {
-          let range = element.createTextRange();
+          const range = element.createTextRange();
 
           range.collapse(true);
           range.moveEnd('character', position);
@@ -50,8 +50,8 @@ export default class Form {
     const createMask = (event) => {
       const matrix = '+1 (___) ___-____';
       const def = matrix.replace(/\D/g, '');
-      let value = event.target.value.replace(/\D/g, '');
-      let i = 0;
+      const value = event.target.value.replace(/\D/g, '');
+      const i = 0;
 
       if (def.length >= value.length) {
         value = def;
@@ -74,7 +74,7 @@ export default class Form {
       }
     };
 
-    let inputs = document.querySelectorAll('[name="phone"]');
+    const inputs = document.querySelectorAll('[name="phone"]');
 
     inputs.forEach((input) => {
       input.addEventListener('input', createMask);
@@ -105,7 +105,7 @@ export default class Form {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        let statusMessage = document.createElement('div');
+        const statusMessage = document.createElement('div');
         statusMessage.style.cssText = `
           margin-top: 15px;
           font-size: 18px; 
