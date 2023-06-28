@@ -42,18 +42,20 @@ export default class MainSlider extends Slider {
 
   bindTriggers() {
     this.btns.forEach((item) => {
-      item.addEventListener('click', () => {
+      item.addEventListener('click', (e) => {
         this.plusSlides(1);
       });
 
       const previousSibling = item.parentNode.previousElementSibling;
-      if (previousSibling) {
+      if (previousSibling && previousSibling.getAttribute('href') === '#') {
         previousSibling.addEventListener('click', (e) => {
+          e.stopPropagation();
           e.preventDefault();
           this.slideIndex = 1;
           this.showSlides(this.slideIndex);
         });
       }
+      console.log(previousSibling);
     });
 
     document.querySelectorAll('.prevmodule').forEach((button) => {
